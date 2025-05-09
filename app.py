@@ -11,6 +11,7 @@ def predecir():
     fiebre = datos.get('fiebre')
     dolor = datos.get('dolor')
 
+    # Validaciones
     if edad not in range(0, 121):
         return jsonify({'error': 'Edad fuera de rango permitido'}), 400
     if fiebre not in [True, False]:
@@ -18,7 +19,10 @@ def predecir():
     if dolor not in range(0, 11):
         return jsonify({'error': 'Nivel de dolor fuera de rango'}), 400
 
-    if edad < 30 and dolor < 3 and not fiebre:
+    # NUEVA CONDICIÓN: Enfermedad terminal
+    if edad > 70 and fiebre and dolor >= 8:
+        resultado = "ENFERMEDAD TERMINAL"
+    elif edad < 30 and dolor < 3 and not fiebre:
         resultado = "NO ENFERMO"
     elif dolor < 5:
         resultado = "ENFERMEDAD LEVE"
@@ -28,6 +32,7 @@ def predecir():
         resultado = "ENFERMEDAD CRÓNICA"
 
     return jsonify({'diagnostico': resultado})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
