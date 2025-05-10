@@ -1,9 +1,8 @@
-
 # 🩺 Servicio de Diagnóstico Médico - Universidad Icesi
 
 Este proyecto implementa un sistema básico de diagnóstico médico utilizando **Flask** y **Docker**.  
 La aplicación expone una API que permite predecir el estado de salud de un paciente con base en su edad, presencia de fiebre y nivel de dolor.  
-También incluye una interfaz web desarrollada en HTML y una ruta adicional para visualizar estadísticas de uso.
+También incluye una interfaz web desarrollada en HTML con Bootstrap, y rutas adicionales para visualizar estadísticas y descargar resultados en formato `.txt`.
 
 ---
 
@@ -49,7 +48,9 @@ Esto expondrá el servicio en:
    - Edad (0–120)
    - Si tiene fiebre (Sí / No)
    - Nivel de dolor (0–10)
-3. Hacer clic en **Enviar** y visualizar el diagnóstico generado.
+3. Hacer clic en **Enviar** para obtener el diagnóstico.
+4. Hacer clic en **Descargar informe de predicciones** para obtener el archivo `.txt`.
+5. Hacer clic en **Ver estadísticas** para mostrar un resumen completo en pantalla.
 
 ---
 
@@ -61,7 +62,7 @@ La aplicación puede retornar una de las siguientes categorías:
 - ENFERMEDAD LEVE  
 - ENFERMEDAD AGUDA  
 - ENFERMEDAD CRÓNICA  
-- **ENFERMEDAD TERMINAL** *(nueva categoría añadida)*
+- ENFERMEDAD TERMINAL
 
 ---
 
@@ -91,25 +92,34 @@ curl -X POST http://localhost:5000/predecir \
 
 ### `/estadisticas`  `[GET]`
 
-Muestra estadísticas acumuladas de uso del modelo.
+Muestra un resumen completo de uso del sistema, incluyendo:
 
-**Ejemplo (en navegador o terminal):**
+- Número total de predicciones por categoría.
+- Últimas 5 predicciones realizadas.
+- Fecha y hora de la última predicción.
 
-```bash
+**Ejemplo (desde navegador):**
+
+```
 http://localhost:5000/estadisticas
 ```
 
-**Respuesta esperada:**
+---
 
-```json
-{
-  "total_predicciones": 6,
-  "ultimas_5_predicciones": [
-    {"diagnostico": "ENFERMEDAD CRÓNICA", "fecha": "2025-05-08T20:41:34.906913"},
-    ...
-  ],
-  "fecha_ultima_prediccion": "2025-05-08T20:41:34.906913"
-}
+### `/descargar-resultados`  `[GET]`
+
+Permite descargar el archivo `predicciones.txt` con el historial de diagnósticos generados.
+
+**Ejemplo (desde navegador):**
+
+```
+http://localhost:5000/descargar-resultados
+```
+
+El archivo incluye líneas como:
+
+```
+[10/05/2025 11:13 AM] → Diagnóstico: ENFERMEDAD LEVE
 ```
 
 ---
@@ -123,6 +133,8 @@ http://localhost:5000/estadisticas
 ├── index.html            # Interfaz web para el usuario
 ├── Dockerfile            # Configuración para ejecución en contenedor
 ├── requirements.txt      # Librerías necesarias (usado internamente por Docker)
+├── resultados/           # Carpeta donde se guarda el archivo predicciones.txt
+│   └── predicciones.txt  # Registro de todas las predicciones realizadas
 └── README.md             # Instrucciones del proyecto (este archivo)
 ```
 
