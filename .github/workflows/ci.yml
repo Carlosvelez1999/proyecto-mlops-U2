@@ -56,7 +56,7 @@ jobs:
       run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
     - name: Construir imagen Docker
-        run: docker build -t ghcr.io/carlosvelez1999/diagnostico-medico:latest .
+      run: docker build -t ghcr.io/carlosvelez1999/diagnostico-medico:latest .
 
     - name: Subir imagen a GitHub Packages
-        run: docker push ghcr.io/carlosvelez1999/diagnostico-medico:latest
+      run: docker push ghcr.io/carlosvelez1999/diagnostico-medico:latest
