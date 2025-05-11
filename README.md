@@ -155,6 +155,7 @@ Workflow: `.github/workflows/ci.yml`
 
 ## 👨‍💻 Autor
 
-**Carlos Alberto Vélez**  
+**Carlos Alberto Velez**  
 Maestría en Inteligencia Artificial  
 Universidad Icesi – Curso MLOps
+
