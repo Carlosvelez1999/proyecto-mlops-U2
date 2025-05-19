@@ -61,3 +61,4 @@ jobs:
 
     - name: Subir imagen a GitHub Packages
       run: docker push ghcr.io/carlosvelez1999/proyecto-mlops-u2:latest
+
