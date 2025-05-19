@@ -2,9 +2,14 @@ name: CI/CD Diagnóstico Médico
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
 
 jobs:
   pruebas:
