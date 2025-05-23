@@ -148,8 +148,17 @@ Workflow: `.github/workflows/ci.yml`
 ├── .github/workflows/ci.yml  # Workflow de CI/CD
 ├── resultados/               # Carpeta con predicciones
 │   └── predicciones.txt
+├── CHANGELOG.md              # Registro de cambios entre versiones
 └── README.md                 # Este archivo
 ```
+
+---
+
+## 📜 Historial de cambios
+
+Para ver los cambios entre la versión inicial del pipeline y esta versión final con MLOps integrado, revisa el archivo:
+
+📄 [`CHANGELOG.md`](./CHANGELOG.md)
 
 ---
 
